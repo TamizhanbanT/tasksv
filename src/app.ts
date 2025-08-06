@@ -4,6 +4,11 @@ import subjectRoutes from '../src/routes/subject.route'
 import profileRoutes from '../src/routes/profile.route';
 import profileRoleRoutes from '../src/routes/profileRole.routes';
 import mentorStudentRoutes from '../src/routes/mentorStudent.route'
+import authRoutes from '../src/routes/auth.route'
+
+import dotenv from "dotenv";
+dotenv.config();
+
 
 
 
@@ -21,6 +26,7 @@ app.use('/api/subjects', subjectRoutes);
 app.use("/api/profiles", profileRoutes);
 app.use("/api/profileRoles",profileRoleRoutes)
 app.use("/api/mentorstudents",mentorStudentRoutes)
+app.use("/api/",authRoutes)
 
 
 

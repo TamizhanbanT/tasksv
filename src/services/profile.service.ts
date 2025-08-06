@@ -35,7 +35,16 @@ export const getAllProfiles = async () => {
         },
       },
     });
-    return profiles;
+
+    
+    return profiles.map((profile) => ({
+      id: profile.id,
+      email: profile.email,
+      roles: profile.profileRoles.map((r) => r.role.name),
+      subjects: profile.subjects,
+      mentors: profile.mentors,
+      students: profile.students,
+    }));
   } catch (error) {
     throw new Error(`Error fetching profiles: ${error}`);
   }
@@ -69,7 +78,14 @@ export const getProfileById = async (id: number) => {
       throw new Error("Profile not found");
     }
 
-    return profile;
+    return {
+      id: profile.id,
+      email: profile.email,
+      roles: profile.profileRoles.map((r) => r.role.name),
+      subjects: profile.subjects,
+      mentors: profile.mentors,
+      students: profile.students,
+    };
   } catch (error) {
     throw new Error(`Error fetching profile by ID: ${error}`);
   }
