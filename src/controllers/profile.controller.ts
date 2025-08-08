@@ -5,6 +5,8 @@ import {
   getProfileById,
   updateProfile,
   deleteProfile,
+  getMentorProfileById,
+  getStudentProfileById
 } from "../services/profile.service";
 
 export const createProfileController = async (req: Request, res: Response) => {
@@ -61,5 +63,31 @@ export const deleteProfileController = async (req: Request, res: Response) => {
     });
   } catch (error: any) {
     return res.status(400).json({ error: error.message });
+  }
+};
+
+
+export const getStudentProfileByIdController = async (req: Request, res: Response) => {
+  try {
+    const id = Number(req.params.id);
+    if (isNaN(id)) {
+      return res.status(400).json({ error: "Invalid profile ID" });
+    }
+    const profile = await getStudentProfileById(id);
+    res.status(200).json(profile);
+  } catch (error: any) {
+    res.status(404).json({ error: error.message });
+  }
+};
+export const getMentorProfileByIdController = async (req: Request, res: Response) => {
+  try {
+    const id = Number(req.params.id);
+    if (isNaN(id)) {
+      return res.status(400).json({ error: "Invalid profile ID" });
+    }
+    const profile = await getMentorProfileById(id);
+    res.status(200).json(profile);
+  } catch (error: any) {
+    res.status(404).json({ error: error.message });
   }
 };

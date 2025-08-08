@@ -5,6 +5,8 @@ import {
   getProfileByIdController,
   updateProfileController,
   deleteProfileController,
+ getStudentProfileByIdController,
+ getMentorProfileByIdController
 } from "../controllers/profile.controller";
 import { authenticate, authorizeRoles } from "../middlewares/auth.middleware";
 
@@ -22,4 +24,6 @@ router.get("/:id", authenticate, getProfileByIdController);
 router.put("/:id", authenticate, authorizeRoles("admin"), updateProfileController);
 router.delete("/:id", authenticate, authorizeRoles("admin"), deleteProfileController);
 
+router.get("/student/:id", authenticate, getStudentProfileByIdController);
+router.get("/mentor/:id", authenticate, getMentorProfileByIdController);
 export default router;
