@@ -32,7 +32,7 @@ export const deleteMentorStudentRelation = async (
   });
 };
 
-// Update mentor-student relation (rare case - replace relation)
+// Update mentor-student relation 
 export const updateMentorStudentRelation = async (
   mentorId: number,
   studentId: number,
